@@ -3,8 +3,8 @@
 from zope.schema import Int, TextLine, List
 from zope.interface import Interface
 from zope.i18nmessageid import MessageFactory
-from zope.container.interfaces import IContained, IBTreeContainer
-from zope.container.constraints import contains, containers
+from zope.app.container.interfaces import IContained, IContainer
+from zope.app.container.constraints import contains, containers
 
 _ = MessageFactory('dolmen.relation')
 
@@ -35,7 +35,7 @@ class IRelationValue(Interface):
         )
 
 
-class IRelations(IBTreeContainer):
+class IRelations(IContainer):
     """A relation values storage.
     """
     contains(IContainedRelation)

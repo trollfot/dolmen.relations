@@ -7,7 +7,7 @@ from BTrees.Length import Length
 from zope.event import notify
 from zope.interface import implements
 from zope.cachedescriptors.property import Lazy
-from zope.container.constraints import checkObject
+from zope.app.container.constraints import checkObject
 
 from dolmen.relations import events
 from dolmen.relations import IRelations

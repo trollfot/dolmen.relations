@@ -4,7 +4,7 @@ from persistent import Persistent
 from zope.component import getUtility
 from zope.interface import implements
 from zope.app.intid.interfaces import IIntIds
-from zope.container.contained import Contained
+from zope.app.container.contained import Contained
 from zope.interface import implements, providedBy, Declaration
 from dolmen.relations.interfaces import *
 

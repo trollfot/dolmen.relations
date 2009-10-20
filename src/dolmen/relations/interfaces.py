@@ -1,25 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from zope.schema import Int, TextLine, List
-from zope.interface import Interface
 from zope.i18nmessageid import MessageFactory
-from zope.app.container.interfaces import IContained, IContainer
+from zope.interface import Interface, Attribute
+from zope.app.container.interfaces import IContainer
 from zope.app.container.constraints import contains, containers
 
-_ = MessageFactory('dolmen.relation')
+_ = MessageFactory('dolmen.relations')
 
 
-class IRelationSource(Interface):
-    """Market interface.
+class IRelationsContainer(IContainer):
+    """A container to store relations.
     """
+    contains('.IRelationValue')
 
-class IRelationTarget(Interface):
-    """Market interface.
-    """
-
-class IContainedRelation(IContained):
-    """A contained relation.
-    """
 
 class IRelationValue(Interface):
     """A simple relation One to One.
@@ -34,11 +28,8 @@ class IRelationValue(Interface):
         required = True,
         )
 
-
-class IRelations(IContainer):
-    """A relation values storage.
-    """
-    contains(IContainedRelation)
+    source = Attribute("The source object of the relation.")
+    target = Attribute("The target object of the relation.")
 
 
 class IStatefulRelationValue(IRelationValue):
@@ -62,6 +53,5 @@ class ITaggedRelationValue(IRelationValue):
         )
 
 
-__all__ = ["IRelationSource", "IRelationTarget",
-           "IRelations", "IContainedRelation",
-           "IRelationValue", "IStatefulRelationValue", "ITaggedRelationValue"]
+__all__ = ("IRelationsContainer", "IRelationValue",
+           "IStatefulRelationValue", "ITaggedRelationValue")

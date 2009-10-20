@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import grokcore.component as grok
-from dolmen.relations import events
-from dolmen.relations import ICatalog
-from dolmen.relations import (IRelationValue,
-                              IRelationSource,
-                              IRelationTarget)
+from dolmen.relations import events, ICatalog, IRelationValue
 
 from zope.interface import Interface
 from zope.component import getUtility, adapter
@@ -34,15 +30,16 @@ def add_relation(relation, event):
 
 @adapter(IIntIdRemovedEvent)
 def object_deleted(event):
+    
     ob = event.object
-
+    catalog = getUtility(ICatalog, context=ob)
+    
     if IRelationValue.providedBy(ob):
         # We assume relations can't be
         # source or targets of relations
         catalog.unindex(ob)
         return
 
-    catalog = getUtility(ICatalog, context=ob)
     intids = getUtility(IIntIds, context=ob)
     uid = intids.queryId(ob)
     if uid is None:
@@ -52,6 +49,7 @@ def object_deleted(event):
     for rel in rels:
         parent = rel.__parent__
         try:
+            catalog.unindex(parent[rel.__name__])
             del parent[rel.__name__]
         except KeyError:
             continue
@@ -60,7 +58,8 @@ def object_deleted(event):
     for rel in rels:
         parent = rel.__parent__
         try:
+            catalog.unindex(parent[rel.__name__])
             del parent[rel.__name__]
-        except KeyError:
+        except KeyError, e:
             continue
         

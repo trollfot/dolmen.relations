@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
 
 from persistent import Persistent
+from dolmen.relations.interfaces import *
+
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implements, providedBy
+from zope.schema.fieldproperty import FieldProperty
 from zope.app.intid.interfaces import IIntIds
 from zope.app.container.contained import Contained
-from zope.interface import implements, providedBy, Declaration
-from dolmen.relations.interfaces import *
 
 
 class RelationValue(Contained, Persistent):
     implements(IRelationValue)
+    source_id = FieldProperty(IRelationValue['source_id'])
+    target_id = FieldProperty(IRelationValue['target_id'])
     
-    def __init__(self, target_id, source_id):
-        self.target_id = target_id
+    def __init__(self, source_id, target_id):
         self.source_id = source_id
+        self.target_id = target_id
         
     @property
     def source(self):
@@ -29,17 +32,19 @@ class RelationValue(Contained, Persistent):
 
 class StatefulRelationValue(RelationValue):
     implements(IStatefulRelationValue)
+    state = FieldProperty(IStatefulRelationValue['state'])
 
-    def __init__(self, target_id, source_id, state=u""):
-        RelationValue.__init__(self, target_id, source_id)
+    def __init__(self, source_id, target_id, state=u""):
+        RelationValue.__init__(self, source_id, target_id)
         self.state = state
 
 
 class TaggedRelationValue(RelationValue):
     implements(ITaggedRelationValue)
+    tags = FieldProperty(ITaggedRelationValue['tags'])
 
-    def __init__(self, target_id, source_id, tags=[]):
-        RelationValue.__init__(self, target_id, source_id)
+    def __init__(self, source_id, target_id, tags=[]):
+        RelationValue.__init__(self, source_id, target_id)
         self.tags = tags
 
 

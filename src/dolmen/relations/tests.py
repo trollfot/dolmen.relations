@@ -8,12 +8,12 @@ from ZODB.interfaces import IConnection
 from persistent import Persistent
 from persistent.interfaces import IPersistent
 from zope import component
-from zope.app.intid import IntIds
-from zope.app.intid.interfaces import IIntIds
-from zope.app.container.contained import Contained
-from zope.app.keyreference.persistent import KeyReferenceToPersistent
-from zope.app.keyreference.persistent import connectionOfPersistent
-from zope.app.keyreference.interfaces import IKeyReference
+from zope.intid import IntIds
+from zope.intid.interfaces import IIntIds
+from zope.container.contained import Contained
+from zope.keyreference.persistent import KeyReferenceToPersistent
+from zope.keyreference.persistent import connectionOfPersistent
+from zope.keyreference.interfaces import IKeyReference
 
 ftesting_zcml = os.path.join(os.path.dirname(__file__), 'ftesting.zcml')
 FunctionalLayer = functional.ZCMLLayer(
@@ -58,4 +58,3 @@ def test_suite():
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')
-    

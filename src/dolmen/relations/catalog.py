@@ -3,7 +3,7 @@
 import BTrees
 from zc.relation.catalog import Catalog
 from zope.component import getUtility
-from zope.app.intid.interfaces import IIntIds
+from zope.intid.interfaces import IIntIds
 from dolmen.relations.interfaces import *
 
 
@@ -29,21 +29,17 @@ class RelationCatalog(Catalog):
         Catalog.__init__(self, dump, load)
 
         self.addValueIndex(
-            IRelationValue['source_id']
-            )
+            IRelationValue['source_id'])
         
         self.addValueIndex(
-            IRelationValue['target_id']
-            )
+            IRelationValue['target_id'])
         
         self.addValueIndex(
             IStatefulRelationValue['state'],
-            btree = BTrees.family32.OI
-            )
+            btree = BTrees.family32.OI)
         
         self.addValueIndex(
             ITaggedRelationValue['tags'],
             btree=BTrees.family32.OO,
             multiple=True,
-            name='tag'
-            )
+            name='tag')

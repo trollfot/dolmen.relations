@@ -4,8 +4,8 @@ from BTrees.OOBTree import OOBTree
 
 from zope.event import notify
 from zope.interface import implements, alsoProvides
-from zope.app.container.interfaces import IContained
-from zope.app.container.constraints import checkObject
+from zope.container.interfaces import IContained
+from zope.container.constraints import checkObject
 
 from dolmen.relations import events
 from dolmen.relations import IRelationsContainer
@@ -27,4 +27,3 @@ class RelationsContainer(OOBTree):
     def __delitem__(self, key):
         notify(events.RelationDeletedEvent(self.get(key)))
         OOBTree.__delitem__(self, key)
- 

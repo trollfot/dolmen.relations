@@ -6,8 +6,8 @@ from dolmen.relations.interfaces import *
 from zope.component import getUtility
 from zope.interface import implements, providedBy
 from zope.schema.fieldproperty import FieldProperty
-from zope.app.intid.interfaces import IIntIds
-from zope.app.container.contained import Contained
+from zope.intid.interfaces import IIntIds
+from zope.container.contained import Contained
 
 
 class RelationValue(Contained, Persistent):

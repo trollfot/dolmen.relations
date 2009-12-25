@@ -3,8 +3,8 @@
 from zope.schema import Int, TextLine, List
 from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface, Attribute
-from zope.app.container.interfaces import IContainer
-from zope.app.container.constraints import contains, containers
+from zope.container.interfaces import IContainer
+from zope.container.constraints import contains, containers
 
 _ = MessageFactory('dolmen.relations')
 

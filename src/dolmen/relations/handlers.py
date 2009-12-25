@@ -6,8 +6,8 @@ from dolmen.relations import events, ICatalog, IRelationValue
 from zope.interface import Interface
 from zope.component import getUtility, adapter
 from zope.interface import directlyProvides, noLongerProvides
-from zope.app.container.interfaces import IObjectRemovedEvent
-from zope.app.intid.interfaces import IIntIds, IIntIdRemovedEvent
+from zope.container.interfaces import IObjectRemovedEvent
+from zope.intid.interfaces import IIntIds, IIntIdRemovedEvent
 
 
 @grok.subscribe(IRelationValue, events.IRelationModifiedEvent)
@@ -62,4 +62,3 @@ def object_deleted(event):
             del parent[rel.__name__]
         except KeyError, e:
             continue
-        

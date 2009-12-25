@@ -14,19 +14,17 @@ install_requires = [
     'zope.i18nmessageid',
     'zope.interface',
     'zope.schema',
-    'zope.app.container',
-    'zope.app.intid',
+    'zope.container',
+    'zope.intid',
     'grokcore.component',
     'zc.relation>=1.0',
     ]
 
 tests_require = install_requires + [
     'zope.testing',
+    'zope.keyreference',
     'zope.app.testing',
-    'zope.app.file',
     'zope.app.zcmlfiles',
-    'zope.securitypolicy',
-    'zope.app.securitypolicy',
     ]
 
 setup(name = name,

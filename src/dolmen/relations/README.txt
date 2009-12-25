@@ -13,7 +13,7 @@ In order to demonstrate the package's features, we first set up a sane
 environment::
 
   >>> from zope import component
-  >>> from zope.app.container.btree import BTreeContainer
+  >>> from zope.container.btree import BTreeContainer
 
   >>> sm = component.getGlobalSiteManager()
   >>> herd = getRootFolder()['herd'] = BTreeContainer()
@@ -66,7 +66,7 @@ tests purposes, we are going to create two Mammoth objects that are
 going to be used as source and target::
 
   >>> from dolmen.relations import values, any
-  >>> from zope.app.intid.interfaces import IIntIds
+  >>> from zope.intid.interfaces import IIntIds
   >>> ids = component.getUtility(IIntIds)
   >>> rcatalog = component.getUtility(ICatalog)
 

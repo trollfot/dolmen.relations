@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import grokcore.component as grok
-from dolmen.relations import events, ICatalog, IRelationValue
 
-from zope.interface import Interface
+from dolmen.relations import events, ICatalog, IRelationValue
 from zope.component import getUtility, adapter
-from zope.interface import directlyProvides, noLongerProvides
-from zope.container.interfaces import IObjectRemovedEvent
 from zope.intid.interfaces import IIntIds, IIntIdRemovedEvent
 
 

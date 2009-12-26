@@ -1,7 +1,7 @@
 import os.path
 import unittest
 
-from zope.testing import doctest, module
+from zope.testing import doctest
 from zope.app.testing import functional
 
 from ZODB.interfaces import IConnection
@@ -41,12 +41,15 @@ class RelationTestSetup(functional.FunctionalTestSetup):
 def setUp(test):
     RelationTestSetup().setUp()
 
+def tearDown(test):
+    RelationTestSetup().tearDown()
+
 
 def test_suite():
     """Testing suite.
     """
     readme = functional.FunctionalDocFileSuite(
-        'README.txt', setUp = setUp,
+        'README.txt', setUp = setUp, tearDown = tearDown,
         optionflags=(doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE),
         )
 

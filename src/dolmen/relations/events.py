@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from zope.component.interfaces import ObjectEvent, IObjectEvent
-from zope.interface import implements, Attribute
+from zope.interface import implements
 
 
 class IRelationAddedEvent(IObjectEvent):

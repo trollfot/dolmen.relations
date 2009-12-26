@@ -20,7 +20,9 @@ install_requires = [
     'zc.relation>=1.0',
     ]
 
-tests_require = install_requires + [
+tests_require = [
+    'ZODB3>=3.9.1',
+    'transaction',
     'zope.testing',
     'zope.keyreference',
     'zope.app.testing',

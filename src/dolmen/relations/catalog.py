@@ -11,9 +11,9 @@ def dump(obj, catalog, cache):
     intids = cache.get('intids')
     if intids is None:
         intids = cache['intids'] = getUtility(IIntIds)
-    return intids.getId(obj)
+    return intids.register(obj)
 
-    
+
 def load(token, catalog, cache):
     intids = cache.get('intids')
     if intids is None:
@@ -30,14 +30,14 @@ class RelationCatalog(Catalog):
 
         self.addValueIndex(
             IRelationValue['source_id'])
-        
+
         self.addValueIndex(
             IRelationValue['target_id'])
-        
+
         self.addValueIndex(
             IStatefulRelationValue['state'],
             btree = BTrees.family32.OI)
-        
+
         self.addValueIndex(
             ITaggedRelationValue['tags'],
             btree=BTrees.family32.OO,

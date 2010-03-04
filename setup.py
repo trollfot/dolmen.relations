@@ -8,16 +8,17 @@ readme = open(join('src', 'dolmen', 'relations', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
+    'grokcore.component',
     'setuptools',
+    'zc.relation>=1.0',
     'zope.component',
+    'zope.container',
     'zope.event',
     'zope.i18nmessageid',
     'zope.interface',
-    'zope.schema',
-    'zope.container',
     'zope.intid',
-    'grokcore.component',
-    'zc.relation>=1.0',
+    'zope.lifecycleevent',
+    'zope.schema',
     ]
 
 tests_require = [

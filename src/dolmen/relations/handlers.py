@@ -27,26 +27,24 @@ def add_relation(relation, event):
 
 @adapter(IIntIdRemovedEvent)
 def object_deleted(event):
-    
+
     ob = event.object
-    catalog = getUtility(ICatalog, context=ob)
-    
+    catalog = getUtility(ICatalog)
+
     if IRelationValue.providedBy(ob):
-        # We assume relations can't be
-        # source or targets of relations
+        # We assume relations can't be source or targets of relations.
         catalog.unindex(ob)
         return
 
     intids = getUtility(IIntIds, context=ob)
     uid = intids.queryId(ob)
     if uid is None:
-	return
-    
+        return
+
     rels = list(catalog.findRelations({'source_id': uid}))
     for rel in rels:
         parent = rel.__parent__
         try:
-            catalog.unindex(parent[rel.__name__])
             del parent[rel.__name__]
         except KeyError:
             continue
@@ -55,7 +53,6 @@ def object_deleted(event):
     for rel in rels:
         parent = rel.__parent__
         try:
-            catalog.unindex(parent[rel.__name__])
             del parent[rel.__name__]
         except KeyError, e:
             continue

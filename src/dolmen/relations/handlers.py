@@ -3,7 +3,7 @@
 import grokcore.component as grok
 
 from dolmen.relations import events, ICatalog, IRelationValue
-from zope.component import getUtility, adapter
+from zope.component import getUtility, adapter, queryUtility
 from zope.intid.interfaces import IIntIds, IIntIdRemovedEvent
 
 
@@ -29,10 +29,13 @@ def add_relation(relation, event):
 def object_deleted(event):
 
     ob = event.object
-    catalog = getUtility(ICatalog)
+    catalog = queryUtility(ICatalog)
+    if catalog is None:
+        # We don't have a Catalog installed in this part of the site
+        return
 
     if IRelationValue.providedBy(ob):
-        # We assume relations can't be source or targets of relations.
+        # We assume relations can't be source or targets of relations
         catalog.unindex(ob)
         return
 

@@ -4,6 +4,7 @@ import grokcore.component as grok
 
 from dolmen.relations import events, ICatalog, IRelationValue
 from zope.component import getUtility, adapter, queryUtility
+from zope.event import notify
 from zope.intid.interfaces import IIntIds, IIntIdRemovedEvent
 
 
@@ -46,6 +47,7 @@ def object_deleted(event):
 
     rels = list(catalog.findRelations({'source_id': uid}))
     for rel in rels:
+        notify(events.RelationSourceDeletedEvent(ob, rel))
         parent = rel.__parent__
         try:
             del parent[rel.__name__]
@@ -54,6 +56,7 @@ def object_deleted(event):
 
     rels = list(catalog.findRelations({'target_id': uid}))
     for rel in rels:
+        notify(events.RelationTargetDeletedEvent(ob, rel))
         parent = rel.__parent__
         try:
             del parent[rel.__name__]

@@ -33,3 +33,5 @@ class RelationsContainer(OOBTree):
             # the relation
             notify(events.RelationDeletedEvent(self.get(key)))
             OOBTree.__delitem__(self, key)
+        else:
+            KeyError(key)

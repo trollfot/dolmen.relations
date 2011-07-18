@@ -14,20 +14,28 @@ class RelationValue(Contained, Persistent):
     implements(IRelationValue)
     source_id = FieldProperty(IRelationValue['source_id'])
     target_id = FieldProperty(IRelationValue['target_id'])
-    
+
     def __init__(self, source_id, target_id):
         self.source_id = source_id
         self.target_id = target_id
-        
+
+    def __resolve(self, content_id):
+        try:
+            resolver = self._v_resolver
+        except AttributeError:
+            resolver = self._v_resolver = getUtility(IIntIds).queryObject
+        try:
+            return resolver(content_id)
+        except KeyError:
+            return None
+
     @property
     def source(self):
-        intids = getUtility(IIntIds)
-        return intids.queryObject(self.source_id)
+        return self.__resolve(self.source_id)
 
     @property
     def target(self):
-        intids = getUtility(IIntIds)
-        return intids.queryObject(self.target_id)
+        return self.__resolve(self.target_id)
 
 
 class StatefulRelationValue(RelationValue):

@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from persistent import Persistent
+from cromlech.container.contained import Contained
 from dolmen.relations.interfaces import *
-
+from persistent import Persistent
 from zope.component import getUtility
 from zope.interface import implements
-from zope.schema.fieldproperty import FieldProperty
 from zope.intid.interfaces import IIntIds
-from zope.container.contained import Contained
+from zope.schema.fieldproperty import FieldProperty
 
 
 class RelationValue(Contained, Persistent):

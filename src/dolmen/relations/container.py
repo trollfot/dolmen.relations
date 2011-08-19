@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from BTrees.OOBTree import OOBTree
-
+from cromlech.container.contained import Contained
+from cromlech.container.constraints import checkObject
+from zope.location.interfaces import IContained
+from dolmen.relations import events, IRelationsContainer
 from zope.event import notify
 from zope.interface import implements, alsoProvides
-from zope.container.interfaces import IContained
-from zope.container.constraints import checkObject
-
-from dolmen.relations import events
-from dolmen.relations import IRelationsContainer
 
 
-class RelationsContainer(OOBTree):
+class RelationsContainer(Contained, OOBTree):
     """A rough implementation of a relation storage.
     """
     implements(IRelationsContainer)

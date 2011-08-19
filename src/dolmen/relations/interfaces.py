@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from zope.schema import Int, TextLine, List
+from cromlech.container.constraints import contains
+from dolmen.container.interfaces import IContainer
 from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface, Attribute
-from zope.container.interfaces import IContainer
-from zope.container.constraints import contains
+from zope.schema import Int, TextLine, List
 
 _ = MessageFactory('dolmen.relations')
 

@@ -1,26 +1,17 @@
 # -*- coding: utf-8 -*-
 
 import os
-import pytest
 import transaction
-import cStringIO
-import zope.component
 import dolmen.relations
 
-from BTrees.OOBTree import OOBTree
 from ZODB.DB import DB
 from ZODB.DemoStorage import DemoStorage
 from ZODB.interfaces import IConnection
 from cromlech.configuration.utils import load_zcml
 from cromlech.container.contained import Contained
-from dolmen.container.components import BTreeContainer
-from dolmen.relations import RelationCatalog, ICatalog, RelationsContainer
-from dolmen.relations import values, any
-from grokcore.component import testing
 from persistent import Persistent, IPersistent
 from zope import component
 from zope.component import eventtesting
-from zope.interface import Interface, implements, verify
 from zope.intid import IntIds
 from zope.intid.interfaces import IIntIds
 from zope.keyreference.interfaces import IKeyReference

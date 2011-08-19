@@ -22,6 +22,7 @@ install_requires = [
     'zope.interface',
     'zope.intid',
     'zope.lifecycleevent',
+    'zope.location',
     'zope.schema',
     ]
 
@@ -31,7 +32,6 @@ tests_require = [
     'pytest',
     'transaction',
     'zope.keyreference',
-    'zope.testing',
     ]
 
 setup(name=name,

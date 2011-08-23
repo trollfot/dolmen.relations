@@ -64,6 +64,8 @@ def setup_test():
     eventtesting.setUp()
     load_zcml(os.path.join(
         os.path.dirname(dolmen.relations.__file__), 'configure.zcml'))
+    load_zcml(os.path.join(
+        os.path.dirname(dolmen.relations.__file__), 'subscribers.zcml'))
     sm = component.getGlobalSiteManager()
     sm.registerUtility(IntIds(), IIntIds)
     sm.registerAdapter(connectionOfPersistent, (IPersistent,), IConnection)

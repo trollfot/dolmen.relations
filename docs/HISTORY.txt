@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.0a2 (2011-08-23)
+------------------
+
+* Subscribers are now registered in a different files, so it's easy to
+  bypass them if they're not needed.
+
 2.0a1 (2011-08-23)
 ------------------
 

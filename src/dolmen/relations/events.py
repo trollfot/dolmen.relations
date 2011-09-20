@@ -2,7 +2,7 @@
 
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.lifecycleevent.interfaces import (
-    IObjectAddedEvent, IObjectRemovedEvent)
+    IObjectAddedEvent, IObjectRemovedEvent, IObjectModifiedEvent)
 from zope.lifecycleevent import ObjectAddedEvent, ObjectRemovedEvent
 from zope.interface import implements, Attribute
 
@@ -12,14 +12,15 @@ class IRelationAddedEvent(IObjectAddedEvent):
     """
 
 
-class IRelationDeletedEvent(IObjectEvent):
+class IRelationModifiedEvent(IObjectModifiedEvent):
+    """A relation has been modified.
+    """
+
+
+class IRelationDeletedEvent(IObjectRemovedEvent):
     """A relation has been deleted.
     """
 
-
-class IRelationModifiedEvent(IObjectRemovedEvent):
-    """A relation has been modified.
-    """
 
 class IRelationSourceDeletedEvent(IObjectEvent):
     """The source of a relation has been deleted.
@@ -37,12 +38,12 @@ class RelationAddedEvent(ObjectAddedEvent):
     implements(IRelationAddedEvent)
 
 
-class RelationDeletedEvent(ObjectRemovedEvent):
-    implements(IRelationDeletedEvent)
-
-
 class RelationModifiedEvent(ObjectEvent):
     implements(IRelationModifiedEvent)
+
+
+class RelationDeletedEvent(ObjectRemovedEvent):
+    implements(IRelationDeletedEvent)
 
 
 class RelationSourceDeletedEvent(ObjectEvent):

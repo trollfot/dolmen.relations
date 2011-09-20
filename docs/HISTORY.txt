@@ -1,17 +1,27 @@
 Changelog
 =========
 
+2.0a3 (2011-09-20)
+------------------
+
+* Corrected a serious bug : `IRelationModifiedEvent` was wrongly extending 
+  `IObjectRemovedEvent`, instead of `IRelationDeletedEvent`. This caused
+   intid issues (unregistering provoked by the `IIntIdRemovedEvent` handlers).
+
+
 2.0a2 (2011-08-23)
 ------------------
 
 * Subscribers are now registered in a different files, so it's easy to
   bypass them if they're not needed.
 
+
 2.0a1 (2011-08-23)
 ------------------
 
 * Migrated to be used in Cromlech. This prevents the use of the package in
   a "normal" Zope environment.
+
 
 0.4 (2010-03-15)
 ----------------
@@ -21,12 +31,14 @@ Changelog
 * Fix an error when you del container[reference_id] in a relation container
   of an inexisting relation (you should only get a KeyError).
 
+
 0.3 (2010-03-10)
 ----------------
 
 * Correct zip-safe flag on package.
 * Fix potential NotYet errors by using register instead of getId IntIds method.
 * Fix event when you don't have a relation catalog available.
+
 
 0.2 (2009-12-26)
 ----------------

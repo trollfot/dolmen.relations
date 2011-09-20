@@ -164,6 +164,29 @@ It can also, now, be queried using the state string::
 Events
 ======
 
+Basic checks
+------------
+
+  >>> from zope.lifecycleevent.interfaces import (
+  ...     IObjectAddedEvent, IObjectRemovedEvent, IObjectModifiedEvent)
+  >>> from dolmen.relations.events import (
+  ...     IRelationAddedEvent, IRelationModifiedEvent, IRelationDeletedEvent)
+
+  >>> assert IRelationAddedEvent.isOrExtends(IObjectAddedEvent)
+  >>> assert IRelationModifiedEvent.isOrExtends(IObjectModifiedEvent)
+  >>> assert IRelationDeletedEvent.isOrExtends(IObjectRemovedEvent)
+
+  >>> from dolmen.relations.events import (
+  ...     RelationAddedEvent, RelationModifiedEvent, RelationDeletedEvent)
+
+  >>> assert IRelationAddedEvent.implementedBy(RelationAddedEvent)
+  >>> assert IRelationModifiedEvent.implementedBy(RelationModifiedEvent)
+  >>> assert IRelationDeletedEvent.implementedBy(RelationDeletedEvent)
+
+
+Automatic events
+----------------
+
 Whenever an object is deleted, the relations using it as source or
 target are deleted also::
 

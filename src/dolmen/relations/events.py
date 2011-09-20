@@ -3,7 +3,8 @@
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.lifecycleevent.interfaces import (
     IObjectAddedEvent, IObjectRemovedEvent, IObjectModifiedEvent)
-from zope.lifecycleevent import ObjectAddedEvent, ObjectRemovedEvent
+from zope.lifecycleevent import (
+    ObjectAddedEvent, ObjectRemovedEvent, ObjectModifiedEvent)
 from zope.interface import implements, Attribute
 
 
@@ -38,7 +39,7 @@ class RelationAddedEvent(ObjectAddedEvent):
     implements(IRelationAddedEvent)
 
 
-class RelationModifiedEvent(ObjectEvent):
+class RelationModifiedEvent(ObjectModifiedEvent):
     implements(IRelationModifiedEvent)
 
 

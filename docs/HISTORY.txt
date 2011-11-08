@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.5 (unreleased)
+0.5 (2011-11-08)
 ----------------
 
-* ...
+* Catch an error from the intids when the ID have been removed. Return
+  None in this case.
 
 0.4 (2010-03-15)
 ----------------
